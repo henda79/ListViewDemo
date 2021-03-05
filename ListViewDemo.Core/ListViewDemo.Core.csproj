@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmCross.Forms" Version="7.1.2" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="18.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBackdrop" Version="18.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="18.4.0.42" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.4.0.42" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>

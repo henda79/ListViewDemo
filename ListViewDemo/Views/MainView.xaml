@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BackdropPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:controls="clr-namespace:ListViewDemo.Controls;assembly=ListViewDemo"
+    xmlns:templates="clr-namespace:ListViewDemo.Views.Templates;assembly=ListViewDemo"
+    xmlns:backdrop="clr-namespace:Syncfusion.XForms.Backdrop;assembly=Syncfusion.SfBackdrop.XForms"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:behaviors="clr-namespace:ListViewDemo.Behaviors;assembly=ListViewDemo"
+    xmlns:viewModels="clr-namespace:ListViewDemo.Core.ViewModels;assembly=ListViewDemo.Core"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    x:Class="ListViewDemo.Views.MainPage"
+    x:DataType="viewModels:MainViewModel">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="State: Empty" Command="{Binding ChangeStateCommand}" CommandParameter="{ x:Static xct:LayoutState.Empty }" Order="Secondary"/>
+        <ToolbarItem Text="State: Loading" Command="{Binding ChangeStateCommand}" CommandParameter="{ x:Static xct:LayoutState.Loading }" Order="Secondary"/>
+        <ToolbarItem Text="State: Success" Command="{Binding ChangeStateCommand}" CommandParameter="{ x:Static xct:LayoutState.Success }" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+
+    <controls:BackdropPage.BackLayer>
+        <backdrop:BackdropBackLayer>
+            <StackLayout>
+                <!-- Item Sort -->
+                <Label Text="Item Sorting" TextColor="{DynamicResource InverseTextColor}" />
+                <buttons:SfSegmentedControl
+                x:Name="ItemSortSegmentedControl"
+                SelectionChanged="ItemSortSegmentedControl_OnSelectionChanged"
+                HorizontalOptions="Start">
+
+                    <buttons:SfSegmentedControl.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Ascending</x:String>
+                            <x:String>Descending</x:String>
+                        </x:Array>
+                    </buttons:SfSegmentedControl.ItemsSource>
+                </buttons:SfSegmentedControl>
+            </StackLayout>
+        </backdrop:BackdropBackLayer>
+    </controls:BackdropPage.BackLayer>
+
+    <controls:BackdropPage.FrontLayer>
+        <backdrop:BackdropFrontLayer>
+            <controls:PullToRefresh
+                x:Name="PullToRefresh"
+                Refreshing="SfPullToRefresh_OnRefreshing">
+
+                <controls:PullToRefresh.PullableContent>
+                    <StackLayout 
+                        xct:StateLayout.CurrentState="Success"
+                        xct:StateLayout.AnimateStateChanges="true">
+
+                        <xct:StateLayout.StateViews>
+                            <xct:StateView StateKey="Empty">
+                                <Label Text="Empty View State"/>
+                            </xct:StateView>
+
+                            <xct:StateView StateKey="Loading">
+                                <Label Text="Loading View State"/>
+                            </xct:StateView>
+
+                            <xct:StateView StateKey="Success">
+                                <xForms:SfListView
+                                    x:Name="ListView"
+                                    AutoFitMode="DynamicHeight"
+                                    ItemSpacing="10" 
+                                    ItemsSource="{Binding ContactDataSource.Source}"
+                                    SelectionMode="SingleDeselect">
+
+                                    <xForms:SfListView.Behaviors>
+                                        <behaviors:SfListViewBehavior/>
+                                    </xForms:SfListView.Behaviors>
+
+                                    <xForms:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <templates:ItemTemplate/>
+                                        </DataTemplate>
+                                    </xForms:SfListView.ItemTemplate>
+                                </xForms:SfListView>
+                            </xct:StateView>
+                        </xct:StateLayout.StateViews>
+
+                        <Label Text="'None' View State"/>
+                    </StackLayout>
+                </controls:PullToRefresh.PullableContent>
+            </controls:PullToRefresh>
+        </backdrop:BackdropFrontLayer>
+    </controls:BackdropPage.FrontLayer>
+</controls:BackdropPage>

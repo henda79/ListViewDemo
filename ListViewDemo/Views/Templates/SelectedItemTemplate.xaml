@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ListViewDemo.Core.Models;assembly=ListViewDemo.Core"
+    x:Class="ListViewDemo.Views.Templates.SelectedItemTemplate"
+    x:DataType="models:Contact">
+
+    <Grid
+        RowDefinitions="auto"
+        VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand">
+
+        <Frame
+            Grid.Row="0"
+            Margin="3"
+            Padding="0">
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+
+                <Grid>
+                    <StackLayout>
+                        <Label Text="{Binding FirstName}" />
+                        <Label Text="{Binding LastName}" />
+                    </StackLayout>
+
+                    <Button
+                        VerticalOptions="End"
+                        HorizontalOptions="End"
+                        Text="..." />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentView>

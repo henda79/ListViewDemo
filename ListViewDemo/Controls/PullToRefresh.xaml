@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xForms:SfPullToRefresh
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xForms="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    x:Class="ListViewDemo.Controls.PullToRefresh"
+    VerticalOptions="FillAndExpand"
+    HorizontalOptions="FillAndExpand"
+    TransitionMode="Push"
+    PullingThreshold="100"
+    RefreshContentHeight="30"
+    RefreshContentThreshold="30"
+    RefreshContentWidth="30"
+    ProgressBackgroundColor="CornflowerBlue"
+    ProgressStrokeColor="White"
+    ProgressStrokeWidth="5">
+
+    <!--<xForms:SfPullToRefresh.PullingViewTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <Label Text="Pulling"/>
+            </ViewCell>
+        </DataTemplate>
+    </xForms:SfPullToRefresh.PullingViewTemplate>
+
+    <xForms:SfPullToRefresh.RefreshingViewTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <Label Text="Refreshing"/>
+            </ViewCell>
+        </DataTemplate>
+    </xForms:SfPullToRefresh.RefreshingViewTemplate>-->
+</xForms:SfPullToRefresh>
