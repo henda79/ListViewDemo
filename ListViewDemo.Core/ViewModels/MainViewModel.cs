@@ -1,21 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.ViewModels;
-using Syncfusion.DataSource;
-using Xamarin.Forms;
-using Xamarin.CommunityToolkit.UI.Views;
 using Contact = ListViewDemo.Core.Models.Contact;
 
 namespace ListViewDemo.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        private LayoutState _currentLayout;
-        public LayoutState CurrentState
-        {
-            get => _currentLayout;
-            set => SetProperty(ref _currentLayout, value);
-        }
+        public MvxObservableCollection<Contact> ContactCollection { get; }
 
         private IEnumerable<Contact> GetContacts()
         {
@@ -25,26 +17,21 @@ namespace ListViewDemo.Core.ViewModels
             yield return new Contact("John", "Smith");
         }
 
-        public DataSource ContactDataSource { get; set; }
-
-        public Command ChangeStateCommand => new Command<LayoutState>(x =>
-        {
-            CurrentState = x;
-        });
-
         public MainViewModel()
         {
-            ContactDataSource = new DataSource();
+            ContactCollection = new MvxObservableCollection<Contact>();
         }
 
         public override async Task Initialize()
-        {
-            ContactDataSource.Source = GetContacts();
-            ContactDataSource.SourceType = typeof(Contact);
-
-            CurrentState = LayoutState.Success;
-
+        { 
+            RefreshCollection();
             await base.Initialize();
+        }
+
+        public void RefreshCollection()
+        {
+            ContactCollection.Clear();
+            ContactCollection.AddRange(GetContacts());
         }
     }
 }

@@ -2,8 +2,45 @@
 <Application 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xForms="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
     x:Class="ListViewDemo.App">
 
     <Application.Resources>
+        <!--SfPullToRefresh-->
+        <Style
+            TargetType="xForms:SfPullToRefresh"
+            ApplyToDerivedTypes="True">
+
+            <Setter
+                Property="ProgressBackgroundColor"
+                Value="CornflowerBlue" />
+            <Setter
+                Property="ProgressStrokeColor"
+                Value="White" />
+            <Setter
+                Property="ProgressStrokeWidth"
+                Value="2" />
+            <Setter
+                Property="PullingThreshold"
+                Value="150" />
+            <Setter
+                Property="RefreshContentThreshold"
+                Value="10" />
+            <Setter
+                Property="RefreshContentWidth"
+                Value="40" />
+            <Setter
+                Property="RefreshContentHeight"
+                Value="40" />
+            <Setter
+                Property="TransitionMode"
+                Value="SlideOnTop" />
+            <Setter
+                Property="VerticalOptions"
+                Value="FillAndExpand" />
+            <Setter
+                Property="HorizontalOptions"
+                Value="FillAndExpand" />
+        </Style>
     </Application.Resources>
 </Application>

@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
+using ListViewDemo.Core.ViewModels;
 using Syncfusion.DataSource;
-using Syncfusion.XForms.Buttons;
+using Xamarin.CommunityToolkit.UI.Views;
+using SelectionChangedEventArgs = Syncfusion.XForms.Buttons.SelectionChangedEventArgs;
 
 namespace ListViewDemo.Views
 {
@@ -10,21 +11,28 @@ namespace ListViewDemo.Views
         public MainPage()
         {
             InitializeComponent();
-            ListView.Loaded += ListView_Loaded;
+
+            ListView.BindingContextChanged += (sender, e) =>
+            {
+                if (ListView.DataSource.GroupDescriptors.Count == 0)
+                {
+                    RefreshSorting();
+                    RefreshGroups();
+                }
+            };
+
+            ListView.DataSource.AutoExpandGroups = false;
+            StateLayout.SetCurrentState(LayoutView, LayoutState.Success);
         }
 
-        private void ListView_Loaded(object sender, Syncfusion.ListView.XForms.ListViewLoadedEventArgs e)
+        private void SfPullToRefresh_OnRefreshing(object sender, EventArgs e)
         {
-            RefreshSorting();
-            RefreshGroups();
-        }
+            if (PullToRefresh.IsRefreshing) return;
 
-        private async void SfPullToRefresh_OnRefreshing(object sender, EventArgs e)
-        {
             PullToRefresh.IsRefreshing = true;
 
-            await Task.Delay(2000);
-            ListView.DataSource.Refresh();
+            //await Task.Delay(2000);
+            ((MainViewModel) DataContext).RefreshCollection();
 
             PullToRefresh.IsRefreshing = false;
         }
